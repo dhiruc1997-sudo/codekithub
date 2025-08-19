@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { CheckCircle, Download, Code, Zap } from "lucide-react";
 
-export default function SuccessPage() {
+// Create a wrapper component that uses useSearchParams
+function SuccessContent() {
   const searchParams = useSearchParams();
   const productId = searchParams.get("productId");
   const router = useRouter();
@@ -108,5 +109,23 @@ export default function SuccessPage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+// Loading component for Suspense fallback
+function LoadingSpinner() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+    </div>
+  );
+}
+
+// Main export with Suspense boundary
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <SuccessContent />
+    </Suspense>
   );
 }
