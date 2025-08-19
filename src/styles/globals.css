@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+body {
+  /* Dark blue gradient background */
+  background-image: linear-gradient(to bottom right, #1e3a8a, #1e40af);
+  /* Overlay the circuit pattern */
+  background-image: url('/dark-background.jpg'), linear-gradient(to bottom right, #1e3a8a, #1e40af);
+  background-attachment: fixed;
+  background-size: cover, 100% 100%; /* Cover the entire viewport with gradient, full size for circuit */
+  background-position: center, 0 0; /* Center the gradient, position circuit pattern */
+  background-repeat: repeat, no-repeat; /* Circuit pattern repeats, gradient does not */
+}
