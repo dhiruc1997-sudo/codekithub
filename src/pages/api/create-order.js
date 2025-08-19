@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   //const { productId } = req.body;
 
   // You can fetch product price from Firestore if needed. For now:
-  const amount = 10000; // 100.00 INR
+  const amount = 49900; // 100.00 INR
 
   try {
     const order = await razorpay.orders.create({
